@@ -1,19 +1,19 @@
 # ssh-agent_fish
 
-ssh-agent automatic startup for fish (mold-compatible)
+ssh-agent automatic startup for fish
 
 ## Installation
 
-#### Using mold (recommended)
+#### Using fisherman (recommended)
 
-1. Install mold [https://github.com/benjamin-surma/mold](https://github.com/benjamin-surma/mold)
-2. Add the below line in your `.config/fish/config.fish`:
+1. Install fisherman [https://github.com/fisherman/fisherman](https://github.com/fisherman/fisherman)
+2. Run:
 
-    mold bundle https://github.com/benjamin-surma/ssh-agent_fish.git
+    fisher install https://github.com/virtualxdriver/ssh-agent.fish.git
 
 #### Classic
 
-Copy-paste the contents of the `fish/autoload/ssh-agent.fish` in your `.config/fish/config.fish` file.
+Copy-paste the contents of the `conf.d/ssh-agent.fish` into your `.config/fish/config.fish` file.
 
 ## Usage
 

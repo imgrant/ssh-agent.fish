@@ -8,6 +8,17 @@ function __ssh_agent__start_agent
     source (/usr/bin/env ssh-agent -s $lifetime | sed 's/\([^=]*\)=\([^;]*\);.*/set -xU \1 \2/' | psub)
 end
 
+function __ssh_agent__fix_environment
+    if set -qg SSH_AUTH_SOCK
+        set -l global_socket (set -xgL | grep SSH_AUTH_SOCK | cut -d' ' -f 2)
+        set -l universal_socket (set -xUL | grep SSH_AUTH_SOCK | cut -d' ' -f 2)
+        set -eg SSH_AUTH_SOCK
+        if test "$global_socket" != "$universal_socket"
+            set -xU SSH_AUTH_SOCK $global_socket
+        end
+    end
+end
+
 function __ssh_agent__load_identities
     if not ssh-add -l >/dev/null
         # Only add keys if the agent has no identities
@@ -27,11 +38,12 @@ function __ssh_agent__load_identities
     end
 end
 
-if set -q SSH_AGENT_PID
-    if not ps x | grep $SSH_AGENT_PID | grep ssh-agent >/dev/null
-        __ssh_agent__start_agent
+if not set -qg SSH_AUTH_SOCK
+    if set -qU SSH_AGENT_PID
+        if not ps x | grep $SSH_AGENT_PID | grep ssh-agent >/dev/null
+            __ssh_agent__start_agent
+        end
     end
-else
-    __ssh_agent__start_agent
 end
+__ssh_agent__fix_environment
 __ssh_agent__load_identities

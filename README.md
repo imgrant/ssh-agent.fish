@@ -25,6 +25,7 @@ ssh-agent automatic startup for fish
 ### Manually
 
 Copy the `__ssh_agent__*.fish` files in the functions directory into your `.config/fish/functions/` directory.
+
 Copy-paste the contents of the `init.fish` into your `.config/fish/config.fish` file.
 
 ## Usage
@@ -33,9 +34,9 @@ You can customize the functionality, identities, etc., via a few universal varia
 
 ### Multiple identities
 
-By default, only the default identity (e.g. `id_rsa`) is loaded.
+Unless otherwise configured, only the default identity (e.g. `id_rsa`) is loaded.
 
-You can load multiple identities with the `__ssh_agent__identities` variable, for example:
+You can load specific, multiple identities with the `__ssh_agent__identities` variable, for example:
 
 ```fish
     $ set -U __ssh_agent__identities id_rsa id_ed25519
@@ -43,7 +44,7 @@ You can load multiple identities with the `__ssh_agent__identities` variable, fo
 
 ### Lifetime
 
-By default, identities stay in memory forever.
+Identities normally stay in memory forever.
 
 You can adjust the maximum lifetime of the identities with the `__ssh_agent__lifetime` variable, for example:
 
@@ -57,6 +58,14 @@ By default, ssh-agent_fish uses `ssh-agent` as the actual SSH agent. To use a di
 
 ```fish
     $ set -U __ssh_agent__command "/c/Program Files/ssh-agent-wsl/ssh-agent-wsl"
+```
+
+### Nerd font glyphs
+
+If you're using a font with extended glyphs, such as from the [Nerd Font](https://nerdfonts.com/) project, you can set the `__ssh_agent__use_nerd_font` variable to add some little icons to the information messages that are printed when the plugin initialises:
+
+```fish
+    $ set -U __ssh_agent__use_nerd_font yes
 ```
 
 ## Acknowledgements

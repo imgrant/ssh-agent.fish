@@ -17,6 +17,8 @@ if not set -qg SSH_AUTH_SOCK
         if not ps x | grep $SSH_AGENT_PID | grep ssh-agent >/dev/null
             __ssh_agent__start_agent
         end
+    else
+        __ssh_agent__start_agent
     end
 end
 __ssh_agent__fix_environment

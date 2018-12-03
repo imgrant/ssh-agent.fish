@@ -1,7 +1,7 @@
 function __ssh_agent__load_identities
     # Only add keys if the agent has no identities (and it can connect!)
     /usr/bin/env ssh-add -l >/dev/null 2>&1
-    if test $status -eq 0
+    if test $status -eq 1
         set -l identities ""
         if set -q __ssh_agent__identities
             set identities $__ssh_agent__identities

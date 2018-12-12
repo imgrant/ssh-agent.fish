@@ -54,10 +54,10 @@ You can adjust the maximum lifetime of the identities with the `__ssh_agent__lif
 
 ### Alternative agent
 
-By default, ssh-agent_fish uses `ssh-agent` as the actual SSH agent. To use a different command instead, set the `__ssh_agent__command` variable. To use [`ssh-agent-wsl`](https://github.com/rupor-github/ssh-agent-wsl), which is an excellent way to integrate `fish` inside the [Windows Subsytem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) with an [SSH agent in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement), for example:
+By default, ssh-agent_fish uses `ssh-agent` as the actual SSH agent. To use a different command instead, set the `__ssh_agent__agent_command` variable. To use [`ssh-agent-wsl`](https://github.com/rupor-github/ssh-agent-wsl), which is an excellent way to integrate `fish` inside the [Windows Subsytem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) with an [SSH agent in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement), for example:
 
 ```fish
-    $ set -U __ssh_agent__command "/c/Program Files/ssh-agent-wsl/ssh-agent-wsl"
+    $ set -U __ssh_agent__agent_command "/c/Program Files/ssh-agent-wsl/ssh-agent-wsl"
 ```
 
 ### Nerd font glyphs
